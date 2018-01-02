@@ -36,5 +36,20 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="./secrets.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: window.apiKey,
+            authDomain: "chatastrophe-371f5.firebaseapp.com",
+            databaseURL: "https://chatastrophe-371f5.firebaseio.com",
+            projectId: "chatastrophe-371f5",
+            storageBucket: "",
+            messagingSenderId: window.messagingSenderId
+        };
+        window.firebase = firebase;
+        firebase.initializeApp(config);
+    </script>
   </body>
 </html>
