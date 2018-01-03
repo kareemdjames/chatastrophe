@@ -3,10 +3,20 @@ import { Link } from 'react-router-dom'
 import Header from './Header'
 
 class UserContainer extends Component {
+
+  renderedUserEmail = false
+
+  getAuthor = author => {
+    if (!this.renderedUserEmail) {
+      this.renderedUserEmail = true;
+      return <p className="author">{author}</p>
+    }
+  }
+
   render() {
     const props = this.props
     return(
-      <div id="UserContainer">
+      <div id="UserContainer" className="inner-container">
         <Header>
           <Link to="/">
             <button className="red">
@@ -14,7 +24,24 @@ class UserContainer extends Component {
             </button>
           </Link>
         </Header>
-        <h1>Hello From UserContainer for User {props.match.params.id}</h1>
+        {props.messagesLoaded ? (
+          <div id="message-container">
+            {props.messages.map(msg => {
+              if (msg.user_id === props.userID) {
+                return (
+                  <div key={msg.id} className="message">
+                    {this.getAuthor(msg.author)}
+                    <p>{msg.msg}</p>
+                  </div>
+                )
+              }
+            })}
+          </div>
+        ) : (
+          <div id="loading-container">
+            <img src="../assets/icon.png" alt="logo" id="loader" />
+          </div>
+            )}
       </div>
     )
   }
