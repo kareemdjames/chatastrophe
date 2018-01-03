@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import LoginContainer from './components/LoginContainer'
+import ChatContainer from './components/ChatContainer'
 
 class App extends Component {
 
@@ -16,9 +18,12 @@ class App extends Component {
 
   render() {
     return (
-      <div id="container" className="App inner-container">
-        <LoginContainer />
-      </div>
+      <Router>
+        <div id="container" className="App inner-container">
+          <Route path="/login" component={LoginContainer} />
+          <Route exact path="/" component={ChatContainer} />
+        </div>
+      </Router>
     );
   }
 }
