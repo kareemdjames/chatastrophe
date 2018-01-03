@@ -24,14 +24,14 @@ class LoginContainer extends Component {
             })
             .catch(err => {
                 if (err.code === 'auth/user-not-found') {
-                    this.signup()
+                    this.signUp()
                 } else {
                     this.setState({ error: "Error logging in." });
                 }
             })
     }
 
-    signup() {
+    signUp() {
         window.firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(res => {
                 console.log(res)
