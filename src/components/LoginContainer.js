@@ -19,7 +19,9 @@ class LoginContainer extends Component {
 
     login() {
         window.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(res => {console.log(res)})
+            .then(res => {
+              this.onLogin();
+            })
             .catch(err => {
                 if (err.code === 'auth/user-not-found') {
                     this.signup()
@@ -39,6 +41,11 @@ class LoginContainer extends Component {
                 this.setState({error: 'Error signing up.'})
             })
     }
+
+    onLogin() {
+      this.props.history.push('/')
+    }
+
 
     handleSubmit = (event) => {
         event.preventDefault();

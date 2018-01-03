@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
 import './App.css';
 import LoginContainer from './components/LoginContainer'
 import ChatContainer from './components/ChatContainer'
@@ -12,20 +12,20 @@ class App extends Component {
     window.firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user })
+      } else {
+          this.props.history.push('/login')
       }
     })
   }
 
   render() {
     return (
-      <Router>
         <div id="container" className="App inner-container">
           <Route path="/login" component={LoginContainer} />
           <Route exact path="/" component={ChatContainer} />
         </div>
-      </Router>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
