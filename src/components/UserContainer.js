@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Header from './Header'
+import Icon from '../assets/icon.png'
 
 class UserContainer extends Component {
 
@@ -39,7 +40,7 @@ class UserContainer extends Component {
           </div>
         ) : (
           <div id="loading-container">
-            <img src="../assets/icon.png" alt="logo" id="loader" />
+            <img src={Icon} alt="logo" id="loader" />
           </div>
             )}
       </div>
